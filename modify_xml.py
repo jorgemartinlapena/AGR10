@@ -27,7 +27,7 @@ iface lo inet loopback
         config += """auto eth0
 iface eth0 inet static
 	address 10.1.0.1
-	netmask 255.255.255.248
+	netmask 255.255.255.252
 auto eth1
 iface eth1 inet static
 	address 10.0.1.2
@@ -40,8 +40,8 @@ iface eth2 inet static
     elif vm_num == 6:
         config += """auto eth0
 iface eth0 inet static
-	address 10.1.0.2
-	netmask 255.255.255.248
+	address 10.2.0.1
+	netmask 255.255.255.252
 auto eth1
 iface eth1 inet static
 	address 10.0.3.2
@@ -58,12 +58,12 @@ iface eth0 inet static
 	netmask 255.255.255.252
 auto eth1
 iface eth1 inet static
-	address 10.1.0.3
-	netmask 255.255.255.248
+	address 10.1.0.2
+	netmask 255.255.255.252
 auto eth2 
 iface eth2 inet static
-	address 10.1.0.4
-	netmask 255.255.255.248
+	address 10.2.0.2
+	netmask 255.255.255.252
 """
     elif vm_num == 8:
         config += """auto eth0
