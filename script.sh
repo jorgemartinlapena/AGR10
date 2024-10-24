@@ -30,7 +30,9 @@ do
     # Llamar al script de Python para modificar el XML y pasarle el nuevo UUID como nombre de la VM
     virtual_name="virtual$i"
     
+    sudo ifconfig "$virtual_name" down
     sudo brctl delbr "$virtual_name"
+    
     sudo brctl addbr "$virtual_name"
     
     echo $virtual_name
@@ -43,8 +45,61 @@ do
     
     sudo chown 777 "$VM_DIR"
     
-    sudo virsh create "$VM_DIR/$NEW_UUID.xml"
+    sudo virsh define "$VM_DIR/$NEW_UUID.xml"
     # sudo "virsh start $VM_DIR/$NEW_UUID.xml"
+    
+    sudo virt-copy-in -a $QCOW2_NUEVO "$VM_DIR/interfaces" "/etc/network"
+    
+    sudo virsh start $NEW_UUID
+    
+    touch "$VM_DIR/$i"
+
+      if [ "$i" -eq 5 ]; then
+    	virsh domexec "$NEW_UUID" -- bash -c "
+      	zebra
+      	vtysh
+      	configure terminal
+      	ip route 10.0.3.0/24 10.1.0.2
+      	ip route 10.0.4.0/24 10.1.0.2
+      	ip route 10.0.0.0/30 10.1.0.2
+      	ip route 10.1.0.0/30 10.1.0.2
+      	ip route 10.2.0.0/30 10.1.0.2
+    "
+  elif [ "$i" -eq 6 ]; then
+    	virsh domexec "$NEW_UUID" -- bash -c "
+      	zebra
+      	vtysh
+      	configure terminal
+      	ip route 10.0.1.0/24 10.2.0.2
+      	ip route 10.0.2.0/24 10.2.0.2
+      	ip route 10.0.0.0/30 10.2.0.2
+      	ip route 10.1.0.0/30 10.2.0.2
+      	ip route 10.2.0.0/30 10.2.0.2
+    "
+  elif [ "$i" -eq 7 ]; then
+    	virsh domexec "$NEW_UUID" -- bash -c "
+      	zebra
+      	vtysh
+      	configure terminal
+      	ip route 10.0.1.0/24 10.1.0.1
+      	ip route 10.0.2.0/24 10.1.0.1
+      	ip route 10.0.3.0/24 10.2.0.1
+      	ip route 10.0.4.0/24 10.2.0.1
+    "
+  elif [ "$i" -eq 8 ]; then
+    	virsh domexec "$NEW_UUID" -- bash -c "
+      	zebra
+      	vtysh
+      	configure terminal
+      	ip route 10.0.1.0/24 10.0.0.2
+      	ip route 10.0.2.0/24 10.0.0.2
+      	ip route 10.0.3.0/24 10.0.0.2
+      	ip route 10.0.4.0/24 10.0.0.2
+      	ip route 10.1.0.0/30 10.0.0.2
+      	ip route 10.2.0.0/30 10.0.0.2
+    "
+  fi
+	
 done
 
 echo "Proceso completado. Se duplicaron $NUM_DUPLICADOS máquinas virtuales."
