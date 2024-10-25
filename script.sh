@@ -16,7 +16,7 @@ run_commands_in_vm() {
 	local vm_name=$1
 	local commands=$2
 	expect -c "
-    spawn virsh console $vm_name
+    spawn sudo virsh console $vm_name
     expect {
       \"login:\" { send \"root\r\"; exp_continue }
       \"Password:\" { send \"agr\r\"; exp_continue }
