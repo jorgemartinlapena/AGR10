@@ -85,6 +85,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
           \"agr login:\" { send \"root\r\"; exp_continue }
           \"Password:\" { send \"agr\r\"; exp_continue }
           \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+		  \"agr#\" { send \" configure terminal\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.1.0.2\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.4.0/24 10.1.0.2\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.0.0/30 10.1.0.2\r\"; exp_continue }
@@ -102,6 +103,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
           \"agr login:\" { send \"root\r\"; exp_continue }
           \"Password:\" { send \"agr\r\"; exp_continue }
           \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+		  \"agr#\" { send \" configure terminal\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.1.0/24 10.2.0.2\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.2.0.2\r\"; exp_continue }
 		  \"agr(config)#\" { send \"ip route 10.0.0.0/30 10.2.0.2\r\"; exp_continue }
@@ -119,6 +121,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
           \"agr login:\" { send \"root\r\"; exp_continue }
           \"Password:\" { send \"agr\r\"; exp_continue }
           \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+		  \"agr#\" { send \" configure terminal\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.1.0/24 10.1.0.1\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.1.0.1\r\"; exp_continue }
 		  \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.2.0.1\r\"; exp_continue }
@@ -135,6 +138,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
           \"agr login:\" { send \"root\r\"; exp_continue }
           \"Password:\" { send \"agr\r\"; exp_continue }
           \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+		  \"agr#\" { send \" configure terminal\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.1.0/24 10.0.0.2\r\"; exp_continue }
           \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.0.0.2\r\"; exp_continue }
 		  \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.0.0.2\r\"; exp_continue }
