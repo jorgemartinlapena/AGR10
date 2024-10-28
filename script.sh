@@ -79,21 +79,74 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 
 	# Ejecutar comandos específicos según el valor de i
 	if [ "$i" -eq 5 ]; then
-        commands=("ip route 10.0.3.0/24 10.1.0.2" "ip route 10.0.4.0/24 10.1.0.2" "ip route 10.0.0.0/30 10.1.0.2" "ip route 10.1.0.0/30 10.1.0.2" "ip route 10.2.0.0/30 10.1.0.2")
+        expect -c "
+        spawn sudo virsh console $NEW_UUID
+        expect {
+          \"agr login:\" { send \"root\r\"; exp_continue }
+          \"Password:\" { send \"agr\r\"; exp_continue }
+          \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.1.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.4.0/24 10.1.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.0.0/30 10.1.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.1.0.0/30 10.1.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.2.0.0/30 10.1.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"exit\r\"; exp_continue }
+          \"agr#\" { send \"exit\r\"; send \"exit\r\" }
+        }
+        expect eof
+        "
     elif [ "$i" -eq 6 ]; then
-        commands=("ip route 10.0.1.0/24 10.2.0.2" "ip route 10.0.2.0/24 10.2.0.2" "ip route 10.0.0.0/30 10.2.0.2" "ip route 10.1.0.0/30 10.2.0.2" "ip route 10.2.0.0/30 10.2.0.2")
+		expect -c "
+        spawn sudo virsh console $NEW_UUID
+        expect {
+          \"agr login:\" { send \"root\r\"; exp_continue }
+          \"Password:\" { send \"agr\r\"; exp_continue }
+          \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.1.0/24 10.2.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.2.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.0.0.0/30 10.2.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.1.0.0/30 10.2.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.2.0.0/30 10.2.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"exit\r\"; exp_continue }
+          \"agr#\" { send \"exit\r\"; send \"exit\r\" }
+        }
+        expect eof
+        "
     elif [ "$i" -eq 7 ]; then
-        commands=("ip route 10.0.1.0/24 10.1.0.1" "ip route 10.0.2.0/24 10.1.0.1" "ip route 10.0.3.0/24 10.2.0.1" "ip route 10.0.4.0/24 10.2.0.1")
+		expect -c "
+        spawn sudo virsh console $NEW_UUID
+        expect {
+          \"agr login:\" { send \"root\r\"; exp_continue }
+          \"Password:\" { send \"agr\r\"; exp_continue }
+          \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.1.0/24 10.1.0.1\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.1.0.1\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.2.0.1\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.0.4.0/24 10.2.0.1\r\"; exp_continue }
+          \"agr(config)#\" { send \"exit\r\"; exp_continue }
+          \"agr#\" { send \"exit\r\"; send \"exit\r\" }
+        }
+        expect eof
+        "
     elif [ "$i" -eq 8 ]; then
-        commands=("ip route 10.0.1.0/24 10.0.0.2" "ip route 10.0.2.0/24 10.0.0.2" "ip route 10.0.3.0/24 10.0.0.2" "ip route 10.0.4.0/24 10.0.0.2" "ip route 10.1.0.0/30 10.0.0.2" "ip route 10.2.0.0/30 10.0.0.2")
-    else
-        commands=()
+		expect -c "
+        spawn sudo virsh console $NEW_UUID
+        expect {
+          \"agr login:\" { send \"root\r\"; exp_continue }
+          \"Password:\" { send \"agr\r\"; exp_continue }
+          \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.1.0/24 10.0.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.0.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.0.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.0.4.0/24 10.0.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.1.0.0/30 10.0.0.2\r\"; exp_continue }
+		  \"agr(config)#\" { send \"ip route 10.2.0.0/30 10.0.0.2\r\"; exp_continue }
+          \"agr(config)#\" { send \"exit\r\"; exp_continue }
+          \"agr#\" { send \"exit\r\"; send \"exit\r\" }
+        }
+        expect eof
+        "
     fi
-
-	# Ejecutar comandos si la variable no está vacía
-	if [ -n "$commands" ]; then
-		run_commands_in_vm "$NEW_UUID" "$commands"
-	fi
 
 done
 
