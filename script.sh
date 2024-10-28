@@ -18,9 +18,13 @@ run_commands_in_vm() {
 	expect -c "
     spawn sudo virsh console $vm_name
     expect {
-      \"login:\" { send \"root\r\"; exp_continue }
+      \"agr login:\" { send \"root\r\"; exp_continue }
       \"Password:\" { send \"agr\r\"; exp_continue }
-      \"#\" { send \"$commands\r\"; send \"exit\r\" }
+      \"root@agr:~/#\" { send \"zebra; vtysh\r\"; exp_continue }
+	  \"agr#\" { send \"configure terminal\r\"; exp_continue }
+	  \"agr(config)#\" { send \"$commands\r\"; exp_continue }
+	  \"agr(config)#\" { send \"exit\r\"; exp_continue }
+	  \"agr(config)#\" { send \"exit\r\"; send \"exit\r\" }
     }
     expect eof
   "
@@ -70,13 +74,13 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 
 	# Ejecutar comandos específicos según el valor de i
 	if [ "$i" -eq 5 ]; then
-		commands="zebra; vtysh; configure terminal; ip route 10.0.3.0/24 10.1.0.2; ip route 10.0.4.0/24 10.1.0.2; ip route 10.0.0.0/30 10.1.0.2; ip route 10.1.0.0/30 10.1.0.2; ip route 10.2.0.0/30 10.1.0.2"
+		commands="ip route 10.0.3.0/24 10.1.0.2; ip route 10.0.4.0/24 10.1.0.2; ip route 10.0.0.0/30 10.1.0.2; ip route 10.1.0.0/30 10.1.0.2; ip route 10.2.0.0/30 10.1.0.2"
 	elif [ "$i" -eq 6 ]; then
-		commands="zebra; vtysh; configure terminal; ip route 10.0.1.0/24 10.2.0.2; ip route 10.0.2.0/24 10.2.0.2; ip route 10.0.0.0/30 10.2.0.2; ip route 10.1.0.0/30 10.2.0.2; ip route 10.2.0.0/30 10.2.0.2"
+		commands="ip route 10.0.1.0/24 10.2.0.2; ip route 10.0.2.0/24 10.2.0.2; ip route 10.0.0.0/30 10.2.0.2; ip route 10.1.0.0/30 10.2.0.2; ip route 10.2.0.0/30 10.2.0.2"
 	elif [ "$i" -eq 7 ]; then
-		commands="zebra; vtysh; configure terminal; ip route 10.0.1.0/24 10.1.0.1; ip route 10.0.2.0/24 10.1.0.1; ip route 10.0.3.0/24 10.2.0.1; ip route 10.0.4.0/24 10.2.0.1"
+		commands="ip route 10.0.1.0/24 10.1.0.1; ip route 10.0.2.0/24 10.1.0.1; ip route 10.0.3.0/24 10.2.0.1; ip route 10.0.4.0/24 10.2.0.1"
 	elif [ "$i" -eq 8 ]; then
-		commands="zebra; vtysh; configure terminal; ip route 10.0.1.0/24 10.0.0.2; ip route 10.0.2.0/24 10.0.0.2; ip route 10.0.3.0/24 10.0.0.2; ip route 10.0.4.0/24 10.0.0.2; ip route 10.1.0.0/30 10.0.0.2; ip route 10.2.0.0/30 10.0.0.2"
+		commands="ip route 10.0.1.0/24 10.0.0.2; ip route 10.0.2.0/24 10.0.0.2; ip route 10.0.3.0/24 10.0.0.2; ip route 10.0.4.0/24 10.0.0.2; ip route 10.1.0.0/30 10.0.0.2; ip route 10.2.0.0/30 10.0.0.2"
 	else
 		commands=""
 	fi
