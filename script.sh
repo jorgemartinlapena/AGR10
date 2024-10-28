@@ -21,6 +21,7 @@ run_commands_in_vm() {
       \"agr login:\" { send \"root\r\"; exp_continue }
       \"Password:\" { send \"agr\r\"; exp_continue }
       \"root@agr:~#\" { send \"zebra; vtysh\r\"; exp_continue }
+	  \"agr#\" { send \" configure terminal\r\"; exp_continue }
     }
     foreach cmd {${commands[@]}} {
       expect \"agr(config)#\" { send \"$cmd\r\" }
