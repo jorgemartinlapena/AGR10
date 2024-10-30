@@ -11,30 +11,6 @@ QCOW2_ORIGINAL="/home/alumno/AGR10/agr-vm-base.qcow2"
 BASE_DIR="/home/alumno/AGR10"
 PYTHON_SCRIPT="/home/alumno/AGR10/modify_xml.py" # Ruta completa al script de Python
 
-# Función para ejecutar comandos en la VM usando virsh console y expect
-run_commands_in_vm() {
-	local vm_name=$1
-	local commands=$2
-	expect -c "
-    spawn sudo virsh console $vm_name
-    expect {
-      \"agr login:\" { send \"root\r\"}
-      \"Password:\" { send \"agr\r\"}
-      \"root@agr:~#\" { send \"zebra; vtysh\r\"}
-	  \"agr#\" { send \" configure terminal\r\"}
-    }
-    foreach cmd {${commands[@]}} {
-      expect \"agr(config)#\" { send \"$cmd\r\" }
-    }
-    expect {
-      \"agr(config)#\" { send \"exit\r\"}
-      \"agr#\" {  send \"exit\r\"}
-    }
-    expect eof
-
-  "
-}
-
 # Iterar el número de veces que se especificó
 for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 	# Generar un nuevo UUID
