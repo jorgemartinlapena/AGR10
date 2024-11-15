@@ -66,7 +66,6 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 		expect \"agr(config)#\" { send \"ip route 10.0.0.0/30 10.1.0.2\r\"}
 		expect \"agr(config)#\" { send \"ip route 10.1.0.0/30 10.1.0.2\r\"}
 		expect \"agr(config)#\" { send \"ip route 10.2.0.0/30 10.1.0.2\r\"}
-		expect \"agr(config)#\" { send \"ip route 10.3.0.0/30 10.1.0.2\r\"}
 		expect \"agr(config)#\" { send \"exit\r\"}
 		expect \"agr#\" { send \"exit\r\"}
 		expect \"root@agr:~#\" {  send \"exit\r\"}
@@ -84,7 +83,6 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 		expect \"agr(config)#\" { send \"ip route 10.0.0.0/30 10.2.0.2\r\"}
 		expect \"agr(config)#\" { send \"ip route 10.1.0.0/30 10.2.0.2\r\"}
 		expect \"agr(config)#\" { send \"ip route 10.2.0.0/30 10.2.0.2\r\"}
-		expect \"agr(config)#\" { send \"ip route 10.3.0.0/30 10.2.0.2\r\"}
 		expect \"agr(config)#\" { send \"exit\r\"}
 		expect \"agr#\" {  send \"exit\r\"}
 		expect \"root@agr:~#\" {  send \"exit\r\"}
@@ -101,7 +99,6 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 		expect \"agr(config)#\" { send \"ip route 10.0.2.0/24 10.1.0.1\r\"}
 		expect \"agr(config)#\" { send \"ip route 10.0.3.0/24 10.2.0.1\r\"}
 		expect \"agr(config)#\" { send \"ip route 10.0.4.0/24 10.2.0.1\r\"}
-		expect \"agr(config)#\" { send \"ip route 10.3.0.0/30 10.0.0.1\r\"}
 		expect \"agr(config)#\" { send \"exit\r\"}
 		expect \"agr#\" {  send \"exit\r\"}
 		expect \"root@agr:~#\" {  send \"exit\r\"}
@@ -126,6 +123,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
         expect eof
         "
     fi
+
 done
 
 echo "Proceso completado. Se duplicaron $NUM_DUPLICADOS máquinas virtuales."

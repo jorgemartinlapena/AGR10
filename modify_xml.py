@@ -70,16 +70,6 @@ iface eth2 inet static
 iface eth0 inet static
 	address 10.0.0.1
 	netmask 255.255.255.252
-iface eth1 inet static
-    address 10.3.0.1
-    netmask 255.255.255.252
-"""
-    elif vm_num == 9:
-        config += """auto eth0
-iface eth0 inet static
-	address 10.3.0.2
-	netmask 255.255.255.252
-    gateway 10.3.0.1
 """
 
     # Guardar la configuración en un archivo
@@ -130,9 +120,7 @@ def modify_domain_xml(xml_string, vm_name, bridge_name):
     elif bridge_name == "virtual7":
         bridges = ["virtual7", "virtual5", "virtual6"]
     elif bridge_name == "virtual8":
-        bridges = ["virtual7", "virtual8"]
-    elif bridge_name == "virtual9":
-        bridges = ["virtual8"]
+        bridges = ["virtual7"]
 
     # Agregar las nuevas interfaces basadas en los bridges
     for bridge in bridges:
