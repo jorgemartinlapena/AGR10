@@ -22,6 +22,7 @@ sudo apt update
 sudo apt install expect -y
 sudo apt install net-tools -y
 sudo apt install guestfish -y
+sudo apt install git -y
 
 # Iterar el número de veces que se especificó
 for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
