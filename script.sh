@@ -137,6 +137,18 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 		expect \"root@agr:~#\" {  send \"exit\r\"}
         expect eof
         "
+	elif [ "$i" -eq 9 ]; then
+		expect -c "
+        spawn sudo virsh console $NEW_UUID
+        expect \"agr login:\" { send \"root\r\"}
+		expect \"Password:\" { send \"agr\r\"}
+		expect \"root@agr:~#\" { send \"git clone \"https://github.com/JavierPerezIbanez/SSR-master-server.git\"\r\"}
+		expect \"root@agr:~#\" { send \"cd SSR-master-server\r
+		expect \"root@agr:~#\" { send \"npm install\r\"}
+		expect \"root@agr:~#\" { send \"node app.js &\r\"}
+		expect \"root@agr:~#\" {  send \"exit\r\"}
+        expect eof
+        "
     fi
 
 done
