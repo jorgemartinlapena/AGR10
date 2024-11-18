@@ -23,6 +23,7 @@ sudo apt install expect -y
 sudo apt install net-tools -y
 sudo apt install guestfish -y
 sudo apt install git -y
+sudo apt install npm -y
 
 # Iterar el número de veces que se especificó
 for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
@@ -64,6 +65,8 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 
 	if  [ "$i" -eq 9 ]; then
 		sudo git clone "https://github.com/JavierPerezIbanez/SSR-master-server.git" "$VM_DIR/SSR-master-server"
+		sudo cd SSR-master-server
+		sud npm install
 		sudo virt-copy-in -a $QCOW2_NUEVO "$VM_DIR/SSR-master-server" "/root"
 	fi
 
@@ -148,7 +151,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
         spawn sudo virsh console $NEW_UUID
         expect \"agr login:\" { send \"root\r\"}
 		expect \"Password:\" { send \"agr\r\"}
-		expect \"root@agr:~#\" { send \"cd SSR-master-server\r
+		expect \"root@agr:~#\" { send \"cd SSR-master-server\r\"}
 		expect \"root@agr:~/SSR-master-server#\" { send \"npm install\r\"}
 		expect \"root@agr:~/SSR-master-server#\" { send \"node app.js &\r\"}
 		expect \"root@agr:~/SSR-master-server#\" { send \"cd ..\r\"}
