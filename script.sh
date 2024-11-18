@@ -65,7 +65,7 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 
 	if  [ "$i" -eq 9 ]; then
 		sudo git clone "https://github.com/JavierPerezIbanez/SSR-master-server.git" "$VM_DIR/SSR-master-server"
-		sudo cd SSR-master-server
+		cd SSR-master-server
 		sud npm install
 		sudo virt-copy-in -a $QCOW2_NUEVO "$VM_DIR/SSR-master-server" "/root"
 	fi
