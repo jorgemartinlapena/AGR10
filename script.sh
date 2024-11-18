@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Verificar si el usuario tiene permisos de root
+if [[ $EUID -ne 0 ]]; then
+   echo "Este script necesita ser ejecutado como root o con sudo"
+   exit 1
+fi
+
 # Verificar si se pasó el número de duplicados como parámetro
 if [ -z "$1" ]; then
 	echo "Uso: $0 <numero_de_duplicados>"
@@ -10,6 +16,12 @@ NUM_DUPLICADOS="$1"
 QCOW2_ORIGINAL="/home/alumno/AGR10/agr-vm-base.qcow2"
 BASE_DIR="/home/alumno/AGR10"
 PYTHON_SCRIPT="/home/alumno/AGR10/modify_xml.py" # Ruta completa al script de Python
+
+# Instalar paquetes necesarios para que funcione el script
+sudo apt update
+sudo apt install expect -y
+sudo apt install net-tools -y
+sudo apt install guestfish -y
 
 # Iterar el número de veces que se especificó
 for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
