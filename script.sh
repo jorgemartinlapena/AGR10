@@ -160,4 +160,4 @@ for ((i = 1; i <= NUM_DUPLICADOS; i++)); do
 
 done
 
-echo "Proceso completado. Se duplicaron $NUM_DUPLICADOS máquinas virtuales."
+echo "\n\nProceso completado. Se duplicaron $NUM_DUPLICADOS máquinas virtuales."

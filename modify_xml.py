@@ -70,6 +70,7 @@ iface eth2 inet static
 iface eth0 inet static
 	address 10.0.0.1
 	netmask 255.255.255.252
+auto eth1
 iface eth1 inet static
     address 10.3.0.1
     netmask 255.255.255.252
