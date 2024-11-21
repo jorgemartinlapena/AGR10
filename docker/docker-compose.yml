@@ -1,0 +1,144 @@
+networks:
+  subred1:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.1.0/24
+  subred2:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.2.0/24
+  subred3:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.3.0/24
+  subred4:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.4.0/24
+  subred5:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.1.0.0/24
+  subred6:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.2.0.0/24
+  subred7:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.0.0/24
+  subred8:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.3.0.0/24
+services:
+  pc1:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: pc1
+    image: ubuntu:20.04
+    networks:
+      subred1:
+        ipv4_address: 10.0.1.10
+    platform: linux/amd64
+    privileged: 'true'
+  pc2:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: pc2
+    image: ubuntu:20.04
+    networks:
+      subred2:
+        ipv4_address: 10.0.2.10
+    platform: linux/amd64
+    privileged: 'true'
+  pc3:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: pc3
+    image: ubuntu:20.04
+    networks:
+      subred3:
+        ipv4_address: 10.0.3.10
+    platform: linux/amd64
+    privileged: 'true'
+  pc4:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: pc4
+    image: ubuntu:20.04
+    networks:
+      subred4:
+        ipv4_address: 10.0.4.10
+    platform: linux/amd64
+    privileged: 'true'
+  router1:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: router1
+    image: ubuntu:20.04
+    networks:
+      subred1:
+        ipv4_address: 10.0.1.20
+      subred2:
+        ipv4_address: 10.0.2.20
+      subred5:
+        ipv4_address: 10.1.0.10
+    platform: linux/amd64
+    privileged: 'true'
+  router2:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: router2
+    image: ubuntu:20.04
+    networks:
+      subred3:
+        ipv4_address: 10.0.3.20
+      subred4:
+        ipv4_address: 10.0.4.20
+      subred6:
+        ipv4_address: 10.2.0.10
+    platform: linux/amd64
+    privileged: 'true'
+  router3:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: router3
+    image: ubuntu:20.04
+    networks:
+      subred5:
+        ipv4_address: 10.1.0.20
+      subred6:
+        ipv4_address: 10.2.0.20
+      subred7:
+        ipv4_address: 10.0.0.20
+    privileged: 'true'
+  router4:
+    cap_add:
+    - NET_ADMIN
+    command: sleep infinity
+    container_name: router4
+    image: ubuntu:20.04
+    networks:
+      subred7:
+        ipv4_address: 10.0.0.10
+      subred8:
+        ipv4_address: 10.3.0.10
+    platform: linux/amd64
+    privileged: 'true'
+version: '3.9'
