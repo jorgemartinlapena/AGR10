@@ -104,7 +104,7 @@ def modify_domain_xml(xml_string, vm_name, bridge_name):
     # Modificar la ruta del archivo QCOW2
     disk_element = root.find(".//disk/source")
     if disk_element is not None:
-        disk_element.set('file', f'/home/alumno/AGR10/{vm_name}/{vm_name}.qcow2')
+        disk_element.set('file', f'/home/alumno/AGR10/kvm/{vm_name}/{vm_name}.qcow2')
     
     # Eliminar interfaces existentes antes de agregar nuevas
     devices_element = root.find('devices')
@@ -206,7 +206,7 @@ if __name__ == "__main__":
     modified_xml = modify_domain_xml(xml_string, vm_name, bridge_name)
     
     # Generar la configuración de red
-    config_filename = generate_network_config(bridge_name, f'/home/alumno/AGR10/{vm_name}')
+    config_filename = generate_network_config(bridge_name, f'/home/alumno/AGR10/kvm/{vm_name}')
 
     
     # Mostrar el XML modificado
