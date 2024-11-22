@@ -13,9 +13,9 @@ if [ -z "$1" ]; then
 fi
 
 NUM_DUPLICADOS="$1"
-QCOW2_ORIGINAL="/home/alumno/AGR10/kvm/agr-vm-base.qcow2"
-BASE_DIR="/home/alumno/AGR10/kvm"
-PYTHON_SCRIPT="/home/alumno/AGR10/kvm/modify_xml.py" # Ruta completa al script de Python
+BASE_DIR=$(dirname "$(realpath "$0")")					# "/home/alumno/AGR10/kvm"
+QCOW2_ORIGINAL="$BASE_DIR/agr-vm-base.qcow2"
+PYTHON_SCRIPT="$BASE_DIR/modify_xml.py" 	# Ruta completa al script de Python
 
 # Instalar paquetes necesarios para que funcione el script
 sudo apt update
