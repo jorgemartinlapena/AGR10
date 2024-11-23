@@ -3,7 +3,6 @@
 NUM_CONTAINERS="$1"
 
 CONFIGURE_FRR="
-apt update && apt install -y iproute2 && apt install -y procps && apt install -y iputils-ping &&\
 ip route del default
 "
 

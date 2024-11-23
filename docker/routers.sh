@@ -3,7 +3,6 @@
 NUM_CONTAINERS="$1"
 
 CONFIGURE_FRR="
-apt update && apt install -y frr && apt install -y procps && apt install -y iputils-ping &&\
 echo 'zebra=yes' >> /etc/frr/daemons && \
 echo 'zebra_options=\"-s 90000000 --daemon -A 127.0.0.1\"' >> /etc/frr/daemons && \
 echo -e 'zebrasrv\t2600/tcp\t# zebra service' >> /etc/services && \

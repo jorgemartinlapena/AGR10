@@ -1,0 +1,11 @@
+FROM fluentd:latest
+
+# Asegúrate de estar como root
+USER root
+
+# Ejecuta los comandos como root
+RUN apk update && apk add --no-cache \
+    iproute2 \
+    procps \
+    iputils \
+    frr

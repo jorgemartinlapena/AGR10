@@ -1,0 +1,10 @@
+2024-11-23T22:11:21+00:00	ac7791f91c27	{"container_id":"ac7791f91c27b9754f26c1707434ce7aea008ce33418fdc0ef2593d92ab3a222","container_name":"/pc2","source":"stdout","log":"Todo configurado por PC2."}
+2024-11-23T22:11:21+00:00	b755723417a0	{"container_name":"/pc1","source":"stdout","log":"Todo configurado por PC1.","container_id":"b755723417a066e451b19e9c9d674c0971e4053ebef579d697177a6f27890fc6"}
+2024-11-23T22:11:21+00:00	67f71d779227	{"container_id":"67f71d779227f6e8a9fec469d16bc4bb3a82ff0885af1bfe49689cb74fce4431","container_name":"/pc4","source":"stdout","log":"Todo configurado por PC4."}
+2024-11-23T22:11:21+00:00	27a93f9842a5	{"container_id":"27a93f9842a5f8ba991d422d345f60319b102be93e0409972c49529e386d42a8","container_name":"/pc3","source":"stdout","log":"Todo configurado por PC3."}
+2024-11-23T22:11:21+00:00	38e719566981	{"container_name":"/router3","source":"stdout","log":"Todo configurado por ROUTER3.","container_id":"38e7195669814af909b04d8a639e99d2f8e4f8f4a5b324016d417fb9e731465e"}
+2024-11-23T22:11:21+00:00	c6dacddb665d	{"container_id":"c6dacddb665dba349478de30e0f9c16cfd6ebc523f8d7df13f0d094310d81f41","container_name":"/router4","source":"stdout","log":"Todo configurado por ROUTER4."}
+2024-11-23T22:11:21+00:00	b157b5306345	{"source":"stdout","log":"Todo configurado por ROUTER2.","container_id":"b157b53063451ce2ac2749040d6ebb0f1b414fee5bfc7e2d23dbe373b7de2c96","container_name":"/router2"}
+2024-11-23T22:11:21+00:00	e15a548ba94a	{"source":"stdout","log":"Todo configurado por ROUTER1.","container_id":"e15a548ba94acfc5efa6cce007917582fd8a2c09617b068253630a2fa0c2dd49","container_name":"/router1"}
+2024-11-23T22:11:23+00:00	e2f7fd3f661f	{"container_id":"e2f7fd3f661f2bf9a491f57875161e4d9557e80461cb56f1a37f62db0bcc2a11","container_name":"/servidor","source":"stdout","log":"Server is running"}
+2024-11-23T22:12:06+00:00	e2f7fd3f661f	{"source":"stdout","log":"\u001B[0mGET / \u001B[32m200 \u001B[0m41.724 ms - 1886\u001B[0m","container_id":"e2f7fd3f661f2bf9a491f57875161e4d9557e80461cb56f1a37f62db0bcc2a11","container_name":"/servidor"}

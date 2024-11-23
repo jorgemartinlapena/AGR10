@@ -41,55 +41,85 @@ networks:
       - subnet: 10.3.0.0/24
 services:
   pc1:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por PC1.' && sleep infinity"
     container_name: pc1
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred1:
         ipv4_address: 10.0.1.10
     platform: linux/amd64
     privileged: 'true'
   pc2:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por PC2.' && sleep infinity"
     container_name: pc2
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred2:
         ipv4_address: 10.0.2.10
     platform: linux/amd64
     privileged: 'true'
   pc3:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por PC3.' && sleep infinity"
     container_name: pc3
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred3:
         ipv4_address: 10.0.3.10
     platform: linux/amd64
     privileged: 'true'
   pc4:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por PC4.' && sleep infinity"
     container_name: pc4
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred4:
         ipv4_address: 10.0.4.10
     platform: linux/amd64
     privileged: 'true'
   router1:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por ROUTER1.' && sleep infinity"
     container_name: router1
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred1:
         ipv4_address: 10.0.1.20
@@ -100,11 +130,17 @@ services:
     platform: linux/amd64
     privileged: 'true'
   router2:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por ROUTER2.' && sleep infinity"
     container_name: router2
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred3:
         ipv4_address: 10.0.3.20
@@ -115,11 +151,17 @@ services:
     platform: linux/amd64
     privileged: 'true'
   router3:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por ROUTER3.' && sleep infinity"
     container_name: router3
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred5:
         ipv4_address: 10.1.0.20
@@ -129,16 +171,39 @@ services:
         ipv4_address: 10.0.0.20
     privileged: 'true'
   router4:
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
     - NET_ADMIN
-    command: sleep infinity
+    command: sh -c "echo 'Todo configurado por ROUTER4.' && sleep infinity"
     container_name: router4
-    image: ubuntu:20.04
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     networks:
       subred7:
         ipv4_address: 10.0.0.10
       subred8:
         ipv4_address: 10.3.0.10
+    platform: linux/amd64
+    privileged: 'true'
+  servidor1:
+    build:
+      context: .
+      dockerfile: Dockerfile_npm
+    cap_add:
+    - NET_ADMIN
+    command: node SSR-master-server/app.js
+    container_name: servidor
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
+    networks:
+      subred8:
+        ipv4_address: 10.3.0.20
     platform: linux/amd64
     privileged: 'true'
 version: '3.9'
